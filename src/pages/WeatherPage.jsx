@@ -25,24 +25,27 @@ export default function WeatherPage() {
     }
     return Math.round(tempC);
   };
-  const fetchWeather = async (searchCity = 'Hà Nội') => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await weatherService.getFullWeather(searchCity);
-      setCurrent(data.current);
-      setHourly(data.hourly);
-      setDaily(data.daily);
-      setCity(data.current.city);
-    } catch (err) {
-      setError(err.message || 'Không thể tải dữ liệu thời tiết');
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-  fetchWeather('Hà Nội');
-  }, []);
+ const fetchWeather = async (lat, lon, cityName = '') => {
+  setLoading(true);
+  setError(null);
+
+  try {
+    const data = await weatherService.getFullWeather(lat, lon, cityName);
+
+    setCurrent(data.current);
+    setHourly(data.hourly);
+    setDaily(data.daily);
+    setCity(cityName || data.current.city);
+
+  } catch (err) {
+    setError(err.message || 'Không thể tải dữ liệu thời tiết');
+  } finally {
+    setLoading(false);
+  }
+};
+useEffect(() => {
+  fetchWeather(21.0285, 105.8542, 'Hà Nội');
+}, []);
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-950 flex items-center justify-center">
