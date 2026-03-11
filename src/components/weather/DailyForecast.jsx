@@ -12,6 +12,7 @@ const conditionMap = {
   "scattered clouds": "Mây rải rác",
   "broken clouds": "Nhiều mây",
   "overcast clouds": "U ám",
+  "light rain": "Mưa nhẹ",
 };
 
 export default function DailyForecast({

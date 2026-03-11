@@ -5,14 +5,18 @@ export default function WeatherBackground({ condition, isDay }) {
   const [bgImage, setBgImage] = useState('/assets/backgrounds/pexels-arts-1496373.jpg');
 
   useEffect(() => {
-    const lower = condition.toLowerCase();
+  const lower = condition.toLowerCase();
 
-    if (lower.includes('rain') || lower.includes('storm')) {
-      setBgImage('/assets/backgrounds/pexels-veeterzy-39811.jpg');
-    } else {
-      setBgImage('/assets/backgrounds/pexels-arts-1496373.jpg');
-    }
-  }, [condition]);
+  if (lower.includes('rain') || lower.includes('storm')) {
+    setBgImage('/assets/backgrounds/pexels-veeterzy-39811.jpg');
+
+  } else if (lower.includes('cloud')) {
+    setBgImage('/assets/backgrounds/pexels-tracehudson-2529973.jpg');
+
+  } else {
+    setBgImage('/assets/backgrounds/pexels-arts-1496373.jpg');
+  }
+}, [condition]);
 
   return (
     <div

@@ -45,7 +45,7 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
 
       <h1 className="text-lg font-semibold tracking-widest">WEEFORE</h1>
 
-      <div className="flex-1 max-w-md mx-8 relative">
+      <div className="flex-1 max-w-md mx-4 sm:mx-8 relative">
 
         <Search
           className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70"
@@ -53,11 +53,11 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
         />
 
         <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={lang === "vi" ? "Tìm thành phố..." : "Search for cities..."}
-          className="w-full bg-white/20 backdrop-blur-md rounded-full py-2.5 pl-10 pr-4 text-white placeholder:text-white/70 focus:outline-none"
-        />
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+  placeholder={lang === "vi" ? "Tìm thành phố..." : "Search for cities..."}
+  className="w-full bg-white/20 backdrop-blur-md rounded-full py-2.5 pl-4 sm:pl-10 pr-4 text-white placeholder:text-white/70 focus:outline-none"
+/>
 
         {suggestions.length > 0 && (
           <div className="absolute top-12 w-full bg-black/70 backdrop-blur-md rounded-xl overflow-hidden shadow-lg z-50">
