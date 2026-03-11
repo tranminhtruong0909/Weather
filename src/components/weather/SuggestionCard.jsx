@@ -1,10 +1,9 @@
-
 // src/components/weather/SuggestionCard.jsx
 
 export default function SuggestionCard({
   condition,
   humidity,
-  uv,
+  visibility,
   city,
   lang = "en",
 }) {
@@ -18,34 +17,42 @@ export default function SuggestionCard({
 
   const suggestions = [];
 
-  // Rain → umbrella
-  if (lower.includes("clouds clear") || lower.includes("clear sky")) {
+  // Clear sky → sunglasses
+  if (lower.includes("clear")) {
     suggestions.push({
-      label: lang === "vi" ? "Mang theo" : "Bring",
-      icon: "umbrella.png",
+      label: lang === "vi" ? "Đeo kính râm" : "Wear sunglasses",
+      icon: "sunglasses.png",
     });
   }
 
-  // High UV → sunscreen
-  if (uv >= 6) {
+  // Rain → umbrella
+  if (lower.includes("rain")) {
     suggestions.push({
-      label: lang === "vi" ? "Thoa" : "Apply",
-      icon: "sunscreen.png",
+      label: lang === "vi" ? "Mang theo ô" : "Bring umbrella",
+      icon: "umbrella.png",
     });
   }
 
   // Low humidity → drink water
   if (humidity <= 50) {
     suggestions.push({
-      label: lang === "vi" ? "Uống" : "Drink",
+      label: lang === "vi" ? "Uống nước" : "Drink water",
       icon: "water.png",
     });
   }
 
   // High humidity → mask
-  if (humidity >= 50) {
+  if (humidity >= 70) {
     suggestions.push({
-      label: lang === "vi" ? "Đeo" : "Wear",
+      label: lang === "vi" ? "Đeo khẩu trang" : "Wear mask",
+      icon: "mask.png",
+    });
+  }
+
+  // Low visibility → mask
+  if (visibility < 5000) {
+    suggestions.push({
+      label: lang === "vi" ? "Tầm nhìn thấp, cẩn thận khi ra ngoài" : "Low visibility outside",
       icon: "mask.png",
     });
   }
@@ -92,4 +99,3 @@ export default function SuggestionCard({
     </div>
   );
 }
-

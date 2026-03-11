@@ -1,5 +1,5 @@
 // src/components/layout/Header.jsx
-import { Search, Moon, ThermometerSun, Globe } from 'lucide-react';
+import { Search, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Header({ city, onSearch, unit, setUnit, lang, setLang }) {
@@ -10,14 +10,11 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
   };
 
   const toggleLang = () => setLang(lang === 'en' ? 'vi' : 'en');
+
   const toggleUnit = () => {
-  console.log("Trước toggle:", unit);
-  setUnit(prev => {
-    const newUnit = prev === 'C' ? 'F' : 'C';
-    console.log("Sau toggle:", newUnit);
-    return newUnit;
-  });
-};
+    setUnit((prev) => (prev === 'C' ? 'F' : 'C'));
+  };
+
   return (
     <div className="flex items-center justify-between text-white px-4 py-3">
       <h1 className="text-lg font-semibold tracking-widest">WEEFORE</h1>
@@ -35,30 +32,22 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
       </form>
 
       <div className="flex items-center gap-3">
-        {/* Unit toggle */}
+        {/* Unit Toggle - CHỈ HIỂN THỊ 1 ĐƠN VỊ */}
         <div
-  onClick={toggleUnit}
-  className="flex bg-white/20 backdrop-blur-md rounded-full px-3 py-1 text-sm cursor-pointer hover:bg-white/30 transition select-none"
->
-  <span className={`px-2 font-medium ${unit === 'C' ? 'text-white' : 'opacity-60'}`}>
-    °C
-  </span>
-  <span className="px-1 opacity-50">|</span>
-  <span className={`px-2 font-medium ${unit === 'F' ? 'text-white' : 'opacity-60'}`}>
-    °F
-  </span>
-</div>
+          onClick={toggleUnit}
+          className="flex items-center bg-white/20 backdrop-blur-md rounded-full px-4 py-1 text-sm font-medium cursor-pointer hover:bg-white/30 transition select-none active:scale-95"
+        >
+          <span className="text-lg leading-none">°{unit}</span>
+        </div>
 
-        {/* Language toggle - hiển thị cờ hoặc text */}
+        {/* Language Toggle */}
         <div
           onClick={toggleLang}
-          className="flex bg-white/20 backdrop-blur-md rounded-full px-3 py-1 text-sm cursor-pointer hover:bg-white/30 transition items-center gap-2"
+          className="flex items-center bg-white/20 backdrop-blur-md rounded-full px-3 py-1 text-sm cursor-pointer hover:bg-white/30 transition items-center gap-2"
         >
           <Globe size={16} />
           <span className="font-medium">{lang === 'vi' ? 'VI' : 'EN'}</span>
         </div>
-
-        <Moon size={22} className="cursor-pointer hover:text-white/70 transition" />
       </div>
     </div>
   );

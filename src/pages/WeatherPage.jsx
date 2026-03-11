@@ -8,9 +8,6 @@ import DailyForecast from '../components/weather/DailyForecast';
 import WeatherDetails from '../components/weather/WeatherDetails';
 import SuggestionCard from '../components/weather/SuggestionCard';
 import { weatherService } from '../services/weatherService';
-import { locationService } from '../services/locationService';
-
-
 
 export default function WeatherPage() {
   const [current, setCurrent] = useState(null);
@@ -19,7 +16,7 @@ export default function WeatherPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [city, setCity] = useState('Hà Nội');
-  const [unit, setUnit] = useState('C');     // 'C' hoặc 'F'
+  const [unit, setUnit] = useState('C');     
   const [lang, setLang] = useState('vi');
 
   const convertTemp = (tempC) => {
@@ -43,25 +40,9 @@ export default function WeatherPage() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
-    const loadInitialWeather = async () => {
-      try {
-        // Thử lấy vị trí GPS
-        const pos = await locationService.getCurrentPosition();
-        console.log('Vị trí hiện tại:', pos); // debug
-
-        // Hiện tại vẫn dùng fallback thành phố (có thể mở rộng sau)
-        await fetchWeather('Hà Nội'); // phù hợp với vị trí IP của bạn
-      } catch (err) {
-        console.warn('Không lấy được vị trí GPS:', err);
-        await fetchWeather('Hà Nội'); // fallback
-      }
-    };
-
-    loadInitialWeather();
+  fetchWeather('Hà Nội');
   }, []);
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-950 flex items-center justify-center">
@@ -91,7 +72,6 @@ export default function WeatherPage() {
       </div>
     );
   }
-
   if (error || !current) {
     return (
       <div className="min-h-screen bg-red-950 flex items-center justify-center text-white">
@@ -107,16 +87,13 @@ export default function WeatherPage() {
       </div>
     );
   }
-
   const isDay = new Date().getHours() >= 6 && new Date().getHours() < 18;
-
   return (
     <div className="min-h-screen relative overflow-hidden text-white">
       <WeatherBackground condition={current.condition} isDay={isDay}/>
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 py-8">
         <Header city={city} onSearch={fetchWeather} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit} />
         <div className="mt-10 flex flex-col gap-8">
-
           <CurrentWeather
             temp={current.temp}
             feels_like={current.feels_like}
@@ -127,34 +104,27 @@ export default function WeatherPage() {
             unit={unit}        
             lang={lang}
           />
-
           <HourlyForecast hourly={hourly} current={current} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}/>
-
         </div>
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Cột trái */}
           <div className="lg:col-span-5 space-y-6">
             <DailyForecast daily={daily} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}  />
-
           </div>
-
           {/* Cột phải - Dự báo */}
           <div className="lg:col-span-7 space-y-6 lg:space-y-8">
-
-
-
             <WeatherDetails
               humidity={current.humidity}
               wind_speed={current.wind_speed}
               pressure={current.pressure}
-              uv={current.uv ?? 'N/A'}
+              visibility={current.visibility ?? 'N/A'}
               lang={lang}
               setLang={setLang}
-            />
 
+            />
             <SuggestionCard condition={current.condition}
               humidity={current.humidity}
-              uv={current.uv}
+              visibility={current.visibility}
               city={current.city}
               lang={lang} 
               setLang={setLang}/>

@@ -47,7 +47,7 @@ export default function HourlyForecast({
         </div>
       </div>
 
-      <div className="flex items-center gap-8 overflow-x-auto scrollbar-hide">
+      <div className="flex items-center justify-evenly gap-8 overflow-x-auto scrollbar-hide">
         {data.map((hour, i) => {
 
           const time =

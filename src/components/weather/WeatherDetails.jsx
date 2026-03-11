@@ -4,7 +4,7 @@
 export default function WeatherDetails({
   humidity,
   wind_speed,
-  uv,
+  visibility,
   pressure,
   lang = "en",
 }) {
@@ -20,8 +20,8 @@ export default function WeatherDetails({
       icon: "wind.png",
     },
     {
-      label: lang === "vi" ? "Chỉ số UV" : "UV Index",
-      value: typeof uv === "number" ? uv : uv,
+      label: lang === "vi" ? "Tầm nhìn" : "Visibility",
+      value: `${(visibility / 1000).toFixed(1)} km`,
       icon: "rays.png",
     },
     {

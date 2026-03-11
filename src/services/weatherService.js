@@ -25,9 +25,14 @@ export const weatherService = {
         pressure: currentData.main.pressure,
         condition: currentData.weather[0].description,
         icon: currentData.weather[0].icon,
+        sunrise: currentData.sys.sunrise,
+        sunset: currentData.sys.sunset,
+        visibility: currentData.visibility,
+        clouds: currentData.clouds.all,
+
         city: name || city,
         country: country || 'Unknown',
-        
+
       };
 
       // Hourly (8 giờ tiếp theo)
