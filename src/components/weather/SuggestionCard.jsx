@@ -41,16 +41,10 @@ export default function SuggestionCard({
     });
   }
 
-  // High humidity → mask
-  if (humidity >= 70) {
-    suggestions.push({
-      label: lang === "vi" ? "Đeo khẩu trang" : "Wear mask",
-      icon: "mask.png",
-    });
-  }
+
 
   // Low visibility → mask
-  if (visibility < 5000) {
+  if (visibility < 10000) {
     suggestions.push({
       label: lang === "vi" ? "Tầm nhìn thấp, cẩn thận khi ra ngoài" : "Low visibility outside",
       icon: "mask.png",

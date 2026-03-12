@@ -14,7 +14,8 @@ const conditionMap = {
   "overcast clouds": "U ám",
   "light rain": "Mưa nhẹ",
   "moderate rain": "Mưa vừa",
-  "mist": "Sương mù"
+  "mist": "Sương mù",
+  "snow": "Tuyết rơi"
 };
 
 export default function DailyForecast({
