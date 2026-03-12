@@ -9,18 +9,18 @@ export default function HourlyForecast({
   unit = "C",
   setLang,
   setUnit,
+  condition
 }) {
 
-  const data = [
-    {
-      dt: Date.now() / 1000,
-      temp: current.temp,
-      icon: current.icon,
-      label: lang === "vi" ? "Bây giờ" : "Now",
-    },
-    ...hourly.slice(0, 24),
-  ];
-
+ const data = [
+  {
+    dt: Date.now() / 1000,
+    temp: current.temp,
+    condition: current.condition,
+    label: lang === "vi" ? "Bây giờ" : "Now",
+  },
+  ...hourly.slice(0, 24),
+];
   return (
     <div className="bg-white/20 backdrop-blur-md rounded-3xl px-6 py-5 text-white">
 
@@ -76,8 +76,8 @@ export default function HourlyForecast({
               <p className="text-sm text-white/80 mb-2">{time}</p>
 
               {/* Icon */}
-              <WeatherIcon icon={hour.icon} size={55} />
-
+             
+                <WeatherIcon description={hour.condition} size={55} />
               {/* Temperature */}
               <p className="text-lg font-semibold mt-2">
                 {temp}°{unit}

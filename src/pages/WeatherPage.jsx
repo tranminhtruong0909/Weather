@@ -107,12 +107,12 @@ useEffect(() => {
             unit={unit}        
             lang={lang}
           />
-          <HourlyForecast hourly={hourly} current={current} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}/>
+          <HourlyForecast hourly={hourly} current={current} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}  condition={current.condition}/>
         </div>
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Cột trái */}
           <div className="lg:col-span-5 space-y-6">
-            <DailyForecast daily={daily} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}  />
+            <DailyForecast daily={daily} lang={lang}  setLang={setLang} unit={unit}  setUnit={setUnit}  condition={current.condition} />
           </div>
           {/* Cột phải - Dự báo */}
           <div className="lg:col-span-7 space-y-6 lg:space-y-8">

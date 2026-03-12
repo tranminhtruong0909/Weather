@@ -21,7 +21,7 @@ export default function SuggestionCard({
   if (lower.includes("clear")) {
     suggestions.push({
       label: lang === "vi" ? "Đeo kính râm" : "Wear sunglasses",
-      icon: "sunglasses.png",
+      icon: "sun-glasses.png",
     });
   }
 
@@ -41,13 +41,11 @@ export default function SuggestionCard({
     });
   }
 
-
-
   // Low visibility → mask
   if (visibility < 10000) {
     suggestions.push({
       label: lang === "vi" ? "Tầm nhìn thấp, cẩn thận khi ra ngoài" : "Low visibility outside",
-      icon: "mask.png",
+      icon: "low-visibility.png",
     });
   }
 

@@ -24,6 +24,7 @@ export default function DailyForecast({
   lang = "en",
   setUnit,
   setLang,
+  condition
 }) {
   const weekDays = lang === "vi" ? weekDaysVI : weekDaysEN;
 
@@ -87,7 +88,7 @@ export default function DailyForecast({
 
               {/* Icon */}
               <div className="w-16 flex justify-center">
-                <WeatherIcon icon={day.icon} size={50} />
+                <WeatherIcon description={day.condition} size={50} />
               </div>
 
               {/* Condition */}
