@@ -42,6 +42,9 @@ export default function CurrentWeather({
     "scattered clouds": "Mây rải rác",
     "broken clouds": "Nhiều mây",
     "overcast clouds": "U ám",
+    "light rain": "Mưa nhẹ",
+  "moderate rain": "Mưa vừa",
+  "mist": "Sương mù"
   };
 
   const displayCondition =

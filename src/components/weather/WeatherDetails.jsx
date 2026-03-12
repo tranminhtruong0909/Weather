@@ -22,7 +22,7 @@ export default function WeatherDetails({
     {
       label: lang === "vi" ? "Tầm nhìn" : "Visibility",
       value: `${(visibility / 1000).toFixed(1)} km`,
-      icon: "rays.png",
+      icon: "eye.png",
     },
     {
       label: lang === "vi" ? "Áp suất" : "Pressure",

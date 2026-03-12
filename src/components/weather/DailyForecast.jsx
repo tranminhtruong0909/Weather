@@ -13,6 +13,8 @@ const conditionMap = {
   "broken clouds": "Nhiều mây",
   "overcast clouds": "U ám",
   "light rain": "Mưa nhẹ",
+  "moderate rain": "Mưa vừa",
+  "mist": "Sương mù"
 };
 
 export default function DailyForecast({

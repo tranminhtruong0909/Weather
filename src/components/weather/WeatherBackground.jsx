@@ -11,7 +11,11 @@ export default function WeatherBackground({ condition, isDay }) {
     setBgImage('/assets/backgrounds/pexels-veeterzy-39811.jpg');
 
   } else if (lower.includes('cloud')) {
+    setBgImage('/assets/backgrounds/pexels-jaymantri-4827.jpg');
+  } else if (lower.includes('mist')) {
     setBgImage('/assets/backgrounds/pexels-tracehudson-2529973.jpg');
+} else if (lower.includes('snow')) {
+    setBgImage('/assets/backgrounds/pexels-eberhardgross-19780238.jpg');
 
   } else {
     setBgImage('/assets/backgrounds/pexels-arts-1496373.jpg');
