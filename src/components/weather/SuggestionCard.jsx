@@ -50,7 +50,7 @@ export default function SuggestionCard({
   }
 
   return (
-    <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 text-white">
+    <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-4 text-white">
 
       {/* Header */}
       <div className="flex justify-between items-start mb-4">

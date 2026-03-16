@@ -69,7 +69,7 @@ export default function CurrentWeather({
           {displayTemp}°{unit}
         </p>
 
-        <p className="text-4xl font-medium mb-3">{displayCondition}</p>
+        <p className="text-xl font-medium mb-3">{displayCondition}</p>
       </div>
 
       <p className="text-xl text-white/80 mt-2">

@@ -75,10 +75,10 @@ export default function DailyForecast({
           return (
             <div
               key={i}
-              className="flex items-center justify-between border-b border-white/20 pb-3"
+              className="flex items-center justify-between border-b border-white/20 pb-4"
             >
               {/* Day */}
-              <p className="w-16 text-lg font-medium">
+              <p className="w-24 text-lg font-medium">
                 {i === 0
                   ? lang === "vi"
                     ? "Hôm nay"
@@ -87,7 +87,7 @@ export default function DailyForecast({
               </p>
 
               {/* Icon */}
-              <div className="w-16 flex justify-center">
+              <div className="w-20 flex justify-center">
                 <WeatherIcon description={day.condition} size={50} />
               </div>
 
@@ -97,7 +97,7 @@ export default function DailyForecast({
               </p>
 
               {/* Temperature */}
-              <p className="text-lg font-semibold">
+              <p className="text-lg font-semibold w-16 text-right">
                 {temp}°{unit}
               </p>
             </div>

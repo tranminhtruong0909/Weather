@@ -6,11 +6,13 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
 
   const [query, setQuery] = useState(city || "");
   const [suggestions, setSuggestions] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
 
     if (!query) {
       setSuggestions([]);
+      setNotFound(false);
       return;
     }
 
@@ -18,18 +20,20 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
       try {
         const cities = await mapService.searchCity(query);
         setSuggestions(cities);
+        setNotFound(cities.length === 0);
       } catch (err) {
         console.error(err);
       }
-    }, 500); // delay 500ms
+    }, 500);
 
     return () => clearTimeout(timeout);
 
   }, [query]);
 
   const handleSelectCity = (city) => {
-     setQuery(city.name);
+    setQuery(city.name);
     setSuggestions([]);
+    setNotFound(false);
 
     onSearch(city.lat, city.lon, city.name);
   };
@@ -53,14 +57,15 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
         />
 
         <input
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  placeholder={lang === "vi" ? "Tìm thành phố..." : "Search for cities..."}
-  className="w-full bg-white/20 backdrop-blur-md rounded-full py-2.5 pl-4 sm:pl-10 pr-4 text-white placeholder:text-white/70 focus:outline-none"
-/>
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={lang === "vi" ? "Tìm thành phố..." : "Search for cities..."}
+          className="w-full bg-white/20 backdrop-blur-md rounded-full py-2.5 pl-10 pr-4 text-white placeholder:text-white/70 focus:outline-none"
+        />
 
-        {suggestions.length > 0 && (
+        {(suggestions.length > 0 || notFound) && (
           <div className="absolute top-12 w-full bg-black/70 backdrop-blur-md rounded-xl overflow-hidden shadow-lg z-50">
+
             {suggestions.map((city, i) => (
               <div
                 key={i}
@@ -70,6 +75,15 @@ export default function Header({ city, onSearch, unit, setUnit, lang, setLang })
                 {city.name}
               </div>
             ))}
+
+            {notFound && (
+              <div className="px-4 py-2 text-sm text-white/70">
+                {lang === "vi"
+                  ? "Không tìm thấy vị trí này"
+                  : "Location not found"}
+              </div>
+            )}
+
           </div>
         )}
 
