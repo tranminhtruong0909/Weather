@@ -29,7 +29,6 @@ export default function WeatherBackground({ condition, isDay }) {
         backgroundImage: `url(${bgImage})`
       }}
     >
-      {/* lớp tối để chữ dễ đọc */}
       <div className="absolute inset-0 bg-black/40"></div>
     </div>
   );

@@ -16,7 +16,7 @@ export default function WeatherPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [city, setCity] = useState('Hà Nội');
-  const [unit, setUnit] = useState('C');     
+  const [unit, setUnit] = useState('C');
   const [lang, setLang] = useState('vi');
 
   const convertTemp = (tempC) => {
@@ -25,27 +25,27 @@ export default function WeatherPage() {
     }
     return Math.round(tempC);
   };
- const fetchWeather = async (lat, lon, cityName = '') => {
-  setLoading(true);
-  setError(null);
+  const fetchWeather = async (lat, lon, cityName = '') => {
+    setLoading(true);
+    setError(null);
 
-  try {
-    const data = await weatherService.getFullWeather(lat, lon, cityName);
+    try {
+      const data = await weatherService.getFullWeather(lat, lon, cityName);
 
-    setCurrent(data.current);
-    setHourly(data.hourly);
-    setDaily(data.daily);
-    setCity(cityName || data.current.city);
+      setCurrent(data.current);
+      setHourly(data.hourly);
+      setDaily(data.daily);
+      setCity(cityName || data.current.city);
 
-  } catch (err) {
-    setError(err.message || 'Không thể tải dữ liệu thời tiết');
-  } finally {
-    setLoading(false);
-  }
-};
-useEffect(() => {
-  fetchWeather(21.0285, 105.8542, 'Hà Nội');
-}, []);
+    } catch (err) {
+      setError(err.message || 'Không thể tải dữ liệu thời tiết');
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchWeather(21.0285, 105.8542, 'Hà Nội');
+  }, []);
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-950 flex items-center justify-center">
@@ -93,28 +93,26 @@ useEffect(() => {
   const isDay = new Date().getHours() >= 6 && new Date().getHours() < 18;
   return (
     <div className="min-h-screen relative overflow-hidden text-white">
-      <WeatherBackground condition={current.condition} isDay={isDay}/>
+      <WeatherBackground condition={current.condition} isDay={isDay} />
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 py-8">
-        <Header city={city} onSearch={fetchWeather} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit} />
+        <Header city={city} onSearch={fetchWeather} lang={lang} setLang={setLang} unit={unit} setUnit={setUnit} />
         <div className="mt-10 flex flex-col gap-8">
-          <CurrentWeather
+          {/* <CurrentWeather
             temp={current.temp}
             feels_like={current.feels_like}
             condition={current.condition}
             icon={current.icon}
             city={current.city}
             country={current.country}
-            unit={unit}        
+            unit={unit}
             lang={lang}
-          />
-          <HourlyForecast hourly={hourly} current={current} lang={lang} setLang={setLang} unit={unit}  setUnit={setUnit}  condition={current.condition}/>
+          /> */}
+          <HourlyForecast hourly={hourly} current={current} lang={lang} setLang={setLang} unit={unit} setUnit={setUnit} condition={current.condition} />
         </div>
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Cột trái */}
           <div className="lg:col-span-5 space-y-6">
-            <DailyForecast daily={daily} lang={lang}  setLang={setLang} unit={unit}  setUnit={setUnit}  condition={current.condition} />
+            <DailyForecast daily={daily} lang={lang} setLang={setLang} unit={unit} setUnit={setUnit} condition={current.condition} />
           </div>
-          {/* Cột phải - Dự báo */}
           <div className="lg:col-span-7 space-y-6 lg:space-y-8">
             <WeatherDetails
               humidity={current.humidity}
@@ -123,18 +121,16 @@ useEffect(() => {
               visibility={current.visibility ?? 'N/A'}
               lang={lang}
               setLang={setLang}
-
             />
             <SuggestionCard condition={current.condition}
               humidity={current.humidity}
               visibility={current.visibility}
               city={current.city}
-              lang={lang} 
-              setLang={setLang}/>
+              lang={lang}
+              setLang={setLang} />
           </div>
         </div>
       </div>
-
     </div>
   );
 }

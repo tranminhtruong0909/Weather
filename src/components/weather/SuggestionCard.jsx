@@ -17,7 +17,6 @@ export default function SuggestionCard({
 
   const suggestions = [];
 
-  // Clear sky → sunglasses
   if (lower.includes("clear")) {
     suggestions.push({
       label: lang === "vi" ? "Đeo kính râm" : "Wear sunglasses",
@@ -25,7 +24,6 @@ export default function SuggestionCard({
     });
   }
 
-  // Rain → umbrella
   if (lower.includes("rain")) {
     suggestions.push({
       label: lang === "vi" ? "Mang theo ô" : "Bring umbrella",
@@ -33,7 +31,6 @@ export default function SuggestionCard({
     });
   }
 
-  // Low humidity → drink water
   if (humidity <= 50) {
     suggestions.push({
       label: lang === "vi" ? "Uống nước" : "Drink water",
@@ -41,7 +38,6 @@ export default function SuggestionCard({
     });
   }
 
-  // Low visibility → mask
   if (visibility < 10000) {
     suggestions.push({
       label: lang === "vi" ? "Tầm nhìn thấp, cẩn thận khi ra ngoài" : "Low visibility outside",
@@ -52,7 +48,6 @@ export default function SuggestionCard({
   return (
     <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-4 text-white">
 
-      {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-lg font-semibold">

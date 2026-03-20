@@ -5,18 +5,15 @@ export const weatherService = {
   async getFullWeather(lat, lon, cityName = "") {
     try {
 
-      // kiểm tra tọa độ
       if (lat === undefined || lon === undefined) {
         throw new Error("Thiếu tọa độ");
       }
 
-      // gọi API song song
       const [currentData, forecastData] = await Promise.all([
         weatherAPI.getCurrent(lat, lon),
         weatherAPI.getForecast(lat, lon),
       ]);
 
-      // ===== CURRENT WEATHER =====
       const current = {
         temp: Math.round(currentData.main?.temp || 0),
         feels_like: Math.round(currentData.main?.feels_like || 0),
@@ -30,7 +27,6 @@ export const weatherService = {
         country: currentData.sys?.country || "Unknown",
       };
 
-      // ===== HOURLY FORECAST (8 giờ) =====
       const hourly =
         forecastData.list?.slice(0, 8).map((item) => ({
           dt: item.dt,
@@ -39,7 +35,6 @@ export const weatherService = {
           icon: item.weather?.[0]?.icon || "01d",
         })) || [];
 
-      // ===== DAILY FORECAST (7 ngày) =====
       const dailyMap = new Map();
 
       forecastData.list?.forEach((item) => {
@@ -66,7 +61,7 @@ export const weatherService = {
       });
 
       const daily = Array.from(dailyMap.values())
-        .slice(0, 7)
+        .slice(0, 5)
         .map((d) => ({
           day: d.day,
           max_temp: Math.round(Math.max(...d.temps)),

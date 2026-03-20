@@ -6,13 +6,10 @@ const iconMap = {
   "scattered clouds": "/assets/weather_icon/Scattered clouds.png",
   "broken clouds": "/assets/weather_icon/Broken clouds.png",
   "overcast clouds": "/assets/weather_icon/Overcast clouds.png",
-
   "light rain": "/assets/weather_icon/light rain.png",
   "moderate rain": "/assets/weather_icon/Moderate rain.png",
-
   "mist": "/assets/weather_icon/mist.png",
   "fog": "/assets/weather_icon/foggy.png",
-
   "snow": "/assets/weather_icon/snow.png",
 };
 

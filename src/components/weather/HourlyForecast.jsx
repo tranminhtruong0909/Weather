@@ -72,13 +72,8 @@ export default function HourlyForecast({
           return (
             <div key={i} className="flex flex-col items-center min-w-[70px]">
 
-              {/* Time */}
               <p className="text-sm text-white/80 mb-2">{time}</p>
-
-              {/* Icon */}
-             
                 <WeatherIcon description={hour.condition} size={55} />
-              {/* Temperature */}
               <p className="text-lg font-semibold mt-2">
                 {temp}°{unit}
               </p>
